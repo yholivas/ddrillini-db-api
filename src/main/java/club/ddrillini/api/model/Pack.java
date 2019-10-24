@@ -14,17 +14,20 @@ public class Pack {
     // no annotation means the properties are mapped to columns with the same name in table
     private String name;
     private int count;
+    private String banner;
 
     protected Pack() {}
 
-    public Pack(long id, String name, int count) {
+    public Pack(long id, String name, int count, String bannerPath) {
         this.name = name;
         this.count = count;
+        this.banner = banner;
     }
 
     @Override
     public String toString() {
-        return String.format("Pack[id=%d, name='%s', count=%d]", id, name, count);
+        return String.format("Pack[id=%d, name='%s', count=%d, banner='%s']",
+                id, name, count, banner);
     }
 
     public long getId() {
@@ -37,6 +40,10 @@ public class Pack {
 
     public int getCount() {
         return count;
+    }
+
+    public String getBanner() {
+        return banner;
     }
 }
 

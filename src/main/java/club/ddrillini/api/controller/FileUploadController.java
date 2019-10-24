@@ -2,10 +2,11 @@ package club.ddrillini.api.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Random;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,15 +32,17 @@ public class FileUploadController {
 
         file.transferTo(targetFile);
 
-        return filename;
+        return targetFile.getName();
     }
 
-    /*
-    @RequestMapping(value = "/upload/{fileId}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getFile(@PathVariable("fileId") String fileId)
+    @RequestMapping(value = "/download/{banner}", method = RequestMethod.GET, 
+        produces = MediaType.IMAGE_PNG_VALUE)
+    public String getFile(@PathVariable("banner") String banner)
         throws IOException {
+        byte[] file = Files.readAllBytes(Paths.get(uploadDir + banner));
+
+        return Base64.getEncoder().encodeToString(file);
     }
-    */
 
     private String getRandomString() {
         return new Random().nextInt(999999) + "_" + System.currentTimeMillis();
