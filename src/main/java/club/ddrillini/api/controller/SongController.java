@@ -27,27 +27,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import club.ddrillini.api.model.Pack;
-import club.ddrillini.api.repository.PackRepository;
+import club.ddrillini.api.model.Song;
+import club.ddrillini.api.repository.SongRepository;
 
 @RestController
-@RequestMapping(value = "/api/packs")
-public class PackController {
+@RequestMapping(value = "/api/songs")
+public class SongController {
     @Autowired
-    private PackRepository repository;
+    private SongRepository repository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Pack> getPacks() {
+    public List<Song> getSongs() {
         return repository.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Pack getPack(@PathVariable("id") long id) {
+    public Song getSong(@PathVariable("id") long id) {
         return repository.findById(id).get();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createPack(@RequestBody Pack newPack) {
-        repository.save(newPack);
+    public void createSong(@RequestBody Song newSong) {
+        repository.save(newSong);
     }
 }

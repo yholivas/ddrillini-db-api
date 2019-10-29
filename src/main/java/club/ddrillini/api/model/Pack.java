@@ -19,9 +19,8 @@
 
 package club.ddrillini.api.model;
 
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,16 +39,16 @@ public class Pack {
     private String name;
     private String banner;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="pack", cascade = CascadeType.ALL)
-    private Set<Song> song;
+    @OneToMany(fetch = FetchType.LAZY , mappedBy="packId")
+    private List<Song> songs;
 
     protected Pack() {}
 
-    public Pack(long id, String name, String banner, Set<Song> song) {
+    public Pack(long id, String name, String banner, List<Song> songs) {
         this.id = id;
         this.name = name;
         this.banner = banner;
-        this.song = song;
+        this.songs = songs;
     }
 
     @Override
@@ -70,8 +69,8 @@ public class Pack {
         return banner;
     }
 
-    public Set<Song> getSong() {
-        return song;
+    public List<Song> getSongs() {
+        return songs;
     }
 }
 
