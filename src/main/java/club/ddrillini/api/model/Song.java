@@ -1,7 +1,7 @@
 package club.ddrillini.api.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,18 +16,15 @@ public class Song {
 
     private String title;
     private String banner;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pack_id")
-    private Pack pack;
+    private long packId;
 
     protected Song() {}
 
-    public Song(long id, String title, String banner, Pack pack) {
+    public Song(long id, String title, String banner, long pack) {
         this.id = id;
         this.title = title;
         this.banner = banner;
-        this.pack = pack;
+        this.packId = pack;
     }
 
     public long getId() {
@@ -42,8 +39,8 @@ public class Song {
         return banner;
     }
 
-    public Pack getPack() {
-        return pack;
+    public long getPackId() {
+        return packId;
     }
 }
 
