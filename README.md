@@ -5,8 +5,8 @@
 2. edit `src/main/resources/application.properties` with the URL and username+password
 for that database
 3. either edit `src/main/java/club/ddrillini/api/controller/FileUploadController.java`
-with the url for image storage, or make the folder `~/projects/data-store/`
-4. run `./mvnw`
+with the url for image storage, or `mkdir ~/projects/data-store/`
+4. run `./mvnw spring-boot:run`
 
 ### troubleshooting
 the database might complain about time zones, either edit the database to work
