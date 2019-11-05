@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import club.ddrillini.api.model.Pack;
 import club.ddrillini.api.repository.PackRepository;
+import club.ddrillini.api.repository.SongRepository;
 
 @RestController
 @RequestMapping(value = "/api/packs")
@@ -17,9 +18,16 @@ public class PackController {
     @Autowired
     private PackRepository repository;
 
+    @Autowired
+    private SongRepository songRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Pack> getPacks() {
-        return repository.findAll();
+        List<Pack> packs = repository.findAll();
+        for (Pack pack: packs) {
+            pack.songCount = songRepository.countByPackId(pack.getId());
+        }
+        return packs;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
