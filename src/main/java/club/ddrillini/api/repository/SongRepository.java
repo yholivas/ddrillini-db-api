@@ -26,5 +26,6 @@ import org.springframework.data.repository.CrudRepository;
 import club.ddrillini.api.model.Song;
 
 public interface SongRepository extends CrudRepository<Song, Long> {
-    List<Song> findAll();
+    Long countByPackId(long packId);
+    List<Song> findByPackId(long packId);
 }

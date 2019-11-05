@@ -36,9 +36,9 @@ public class SongController {
     @Autowired
     private SongRepository repository;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Song> getSongs() {
-        return repository.findAll();
+    @RequestMapping(value = "/pack/{id}", method = RequestMethod.GET)
+    public List<Song> getSongsByPackId(@PathVariable("id") long id) {
+        return repository.findByPackId(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
