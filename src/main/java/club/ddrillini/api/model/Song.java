@@ -15,15 +15,20 @@ public class Song {
     private long id;
 
     private String title;
+    private String subtitle;
     private String banner;
+    private String artist;
     private long packId;
 
     protected Song() {}
 
-    public Song(long id, String title, String banner, long pack) {
+    public Song(long id, String title, String subtitle, String banner,
+            String artist, long pack) {
         this.id = id;
         this.title = title;
+        this.subtitle = subtitle;
         this.banner = banner;
+        this.artist = artist;
         this.packId = pack;
     }
 
@@ -41,6 +46,14 @@ public class Song {
 
     public long getPackId() {
         return packId;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public String getArtist() {
+        return artist;
     }
 }
 
